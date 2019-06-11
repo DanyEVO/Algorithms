@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void merge(int min , int mid, int max, int a[])
+void merge(int min , int mid, int max, int arr[])
 {
 	int i = min;
 	int j = mid + 1;
@@ -38,21 +38,21 @@ void merge(int min , int mid, int max, int a[])
 		j++;
 	}
 
-	for(i=min; i<max+1; i++)		// same goes here like above 
+	for(i=min; i<max+1; i++)
 	{
 		a[i] = temp[i];
 	}
 }
 
-void devide(int min, int max, int a[])
+void devide(int min, int max, int arr[])
 {
 	int mid;
 	if(min<max)
 	{	
 		mid = (min+max)/2;
-		devide(min, mid, a);
-		devide(mid+1, max, a);
-		merge(min, mid, max, a);
+		devide(min, mid, arr);
+		devide(mid+1, max, arr);
+		merge(min, mid, max, arr);
 	}
 	else
 	{
@@ -66,25 +66,25 @@ int main()
 	printf("How many elements does your array have? ");
 	scanf(" %d", &n);
 
-	int a[n];
+	int arr[n];
 	printf("Insert every element: ");
 	for(i=0; i<n; i++)
 	{
-		scanf(" %d", &a[i]);
+		scanf(" %d", &arr[i]);
 	} 
 
 	printf("Unsorted array: \n");
 	for(i=0; i<n; i++)
 	{
-		printf(" %d", a[i]);
+		printf(" %d", arr[i]);
 	}
 
 	printf("\n");
-	devide(0, n - 1, a);
+	devide(0, n - 1, arr);
 
 	printf("Sorted array: \n");
 	for(i=0; i<n; i++)
 	{
-		printf(" %d", a[i]);
+		printf(" %d", arr[i]);
 	}
 }
