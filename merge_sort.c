@@ -1,64 +1,7 @@
 #include <stdio.h>
 
-void merge(int min , int mid, int max, int arr[])
-{
-	int i = min;
-	int j = mid + 1;
-	int k = min;
-
-	int temp[max+1];		// max - the index of the last element, not the number of elements
-
-	while(i <= mid && j <= max)
-	{
-		if(a[i]<=a[j])
-		{
-			temp[k] = a[i];
-			k++;
-			i++;
-		}
-		else
-		{
-			temp[k] = a[j];
-			k++;
-			j++;
-		}
-	}
-
-	while(i <= mid)
-	{
-		temp[k] = a[i];
-		k++;
-		i++;
-	}
-
-	while(j <= max)
-	{
-		temp[k] = a[j];
-		k++;
-		j++;
-	}
-
-	for(i=min; i<max+1; i++)
-	{
-		a[i] = temp[i];
-	}
-}
-
-void devide(int min, int max, int arr[])
-{
-	int mid;
-	if(min<max)
-	{	
-		mid = (min+max)/2;
-		devide(min, mid, arr);
-		devide(mid+1, max, arr);
-		merge(min, mid, max, arr);
-	}
-	else
-	{
-		return;
-	}
-}
+void devide(int min, int max, int arr[]);
+void merge(int min , int mid, int max, int arr[]);
 
 int main() 
 {
@@ -86,5 +29,65 @@ int main()
 	for(i=0; i<n; i++)
 	{
 		printf(" %d", arr[i]);
+	}
+}
+
+void devide(int min, int max, int arr[])
+{
+	int mid;
+	if(min<max)
+	{	
+		mid = (min+max)/2;
+		devide(min, mid, arr);
+		devide(mid+1, max, arr);
+		merge(min, mid, max, arr);
+	}
+	else
+	{
+		return;
+	}
+}
+
+void merge(int min , int mid, int max, int arr[])
+{
+	int i = min;
+	int j = mid + 1;
+	int k = min;
+
+	int temp[max+1];
+
+	while(i <= mid && j <= max)
+	{
+		if(arr[i]<=arr[j])
+		{
+			temp[k] = arr[i];
+			k++;
+			i++;
+		}
+		else
+		{
+			temp[k] = arr[j];
+			k++;
+			j++;
+		}
+	}
+
+	while(i <= mid)
+	{
+		temp[k] = arr[i];
+		k++;
+		i++;
+	}
+
+	while(j <= max)
+	{
+		temp[k] = arr[j];
+		k++;
+		j++;
+	}
+
+	for(i=min; i<max+1; i++)
+	{
+		arr[i] = temp[i];
 	}
 }
