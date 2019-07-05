@@ -1,2 +1,2 @@
-# Merge Sort
-In this project I sort an array using the merge sort algorithm.
+# Sorting Algorithms
+In this project I'll go through a few sorting algorithms.
